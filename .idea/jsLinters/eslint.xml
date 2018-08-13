@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EslintConfiguration">
+    <custom-configuration-file used="true" path="C:\project\samsung\.eslintrc" />
+    <additional-rules-dir value="C:\project\samsung\public" />
+  </component>
+</project>

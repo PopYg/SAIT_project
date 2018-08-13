@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="TimelineLite.min.js" type="javaScript">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/public/en/pc/javascripts/lib/TweenMax/TimelineLite.min.js" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

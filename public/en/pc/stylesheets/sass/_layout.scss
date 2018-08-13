@@ -1,0 +1,134 @@
+@charset "UTF-8";
+
+html,body { max-width:100%;}
+html.no_scroll { overflow:hidden; padding:0 17px 0 0;}
+body { background-color:$gray5;}
+
+.dimmed {
+    width: 100%; height: 100%; position: fixed; z-index: 80; background-color: #000; display: none; top: 0;
+    @include opacity(0);
+}
+
+//헤더
+#header {
+    width:100%; height:104px; overflow:hidden; background-color:$gray5; position:absolute; z-index:100;
+    @include transition(background-color,.3s);
+    &.header_open { background-color:$white;}
+    .header_wrap {
+        width:1180px; height:104px; margin:0 auto; border-bottom:1px solid $gray2; position:relative;
+        @extend %clearfix;
+        h1 {
+            width:266px; height:19px; padding:43px 0 0; float:left;
+            a { height:19px; display:block; background:url(../../images/layout/logo.png) 50% 50% no-repeat; text-indent:-9999px; }
+        }
+    }
+}
+//스킵 네이게이션
+
+#skipNavigation a {
+    position: absolute; top: -100px; left: 0; z-index: 100; width: 100%;border-bottom: 1px solid #dbdbdb; background: #f8f7f3; line-height: 50px;
+    &:focus {top: 0;  text-align: center;}
+}
+
+//글로벌 네비게이션
+#gnb {
+    float:left; margin:43px 0 0; padding:0 0 0 204px;
+    .depth1 {
+        @extend %clearfix;
+        > li {
+            float:left; margin:0 8px;
+            > a {
+                font-size:19px; font-weight:$bold; padding:15px 20px; background-color:transparent; color:$gray1;
+                @include borderRadius(43px);
+                @include transition;
+                &:hover,
+                &:focus,
+                &.on { background-color:$blue; color:$white;}
+            }
+        }
+    }
+    .depth2 { 
+        position:absolute; top:144px; font-size:15px;
+        strong { font-size:24px; color:$blue; }
+        > ul {
+            padding:8px 0 0;
+            > li { padding:25px 0 0; }
+            a {
+                @include transition(color,.2s);
+                &:hover { color:$blue;}
+            }
+        }
+
+    }
+    .depth2_1 { left:100px;}
+    .depth2_2 {
+        width:565px; left:310px; border:1px solid $gray4; border-top:0; border-bottom:0; padding:0 0 0 56px;
+        @include boxSizing;
+        .depth2_2_sub {
+            margin:-17px 0 0;
+            @extend %clearfix;
+            ul {
+                float:left;
+                &:nth-of-type(1) { margin:0 30px 0 0;}
+                li { padding:10px 0 0;}
+            }
+        }
+    }
+    .depth2_3 { left:920px;}
+    .header_banner { position:absolute; top:528px; left:100px; }
+}
+
+//헤더 검색 버튼
+#searchBtn {
+    width:53px; height:53px; float:right; text-indent:-9999px; background-image:url(../../images/layout/search_icon.png); margin:26px 0 0;
+    @include backgroundSolt;
+    @include borderSet;
+    @include transition;
+    &:hover,
+    &:focus { border-color:$blue; background-color:$blue; background-image:url(../../images/layout/search_icon_over.png); }
+}
+
+//푸터
+#footer {
+    padding:70px 0; background-color:#1f1f1f;
+    .footer_wrap {
+        width:1180px; margin:0 auto;
+        .f_link {
+            font-size:15px; padding:0 0 30px; border-bottom:1px solid #363636;
+            @extend %clearfix;
+            li {
+                float:left; margin:0 10px; position:relative;
+                &:after { width:1px; height:12px; position:absolute; left:-9px; top:0; background-color:#4c4c4c; display:block; content:""; }
+                &:first-child {
+                    margin:0 10px 0 0; font-weight:$bold;
+                    &:after { display:none;}
+                }
+                a { 
+                    color:$gray3;
+                    @include transition(color,.2s);
+                    &:hover,
+                    &:focus { color:$white;}
+                }
+            }
+        }
+        .f_bottom {
+            padding:35px 0 0; color:$gray3; position:relative;
+            &:after {
+                width:266px; height:19px; display:block; content:""; background:url(../../images/layout/f_logo.gif) 50% 50% no-repeat;
+                position:absolute; right:0; top:35px;
+            }
+            .copy_wrap {
+                address { display:inline-block;}
+                .tel { padding:0 0 0 10px;}
+                .copyright { padding:10px 0 0;}
+            }
+        }
+    }
+}
+
+
+
+
+
+
+

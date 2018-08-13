@@ -1,0 +1,337 @@
+@charset "UTF-8";
+
+@import "./_common/base";
+@import "./layout";
+@import "./main";
+@import "./about";
+
+/*
+  z-index 가이드
+  container : auto
+  header, footer :100
+  popup : 200
+  subLocation : 50
+*/
+
+//기본 스타일
+input[type=text],
+textarea,
+select {
+    @include transition(border-color,.2s);
+    &:focus { border-color:$blue !important;}
+}
+
+::selection { background: $blue; color: $white; text-shadow: none; }
+
+::-moz-selection { background: $blue; color: $white; text-shadow: none; }
+
+img { vertical-align:top; image-rendering: -webkit-optimize-contrast;}
+
+.popup_dimmed {
+    width:100%; height:100%; position:fixed; z-index:300; background-color:$black; display:none; top:0;
+    @include opacity(0);
+}
+caption { width:1px; height:1px; overflow:hidden; margin:-1px;}
+
+//히든 텍스트
+.hidden-txt,
+legend {
+    overflow:hidden; display:inline-block; text-indent:-999px; width:0; height:0; line-height:1px; position:absolute;
+}
+
+
+#container {
+    padding:104px 0 0;
+    //서브 비쥬얼 이미지
+    &.about #subVisual { background-image:url(../../images/about/about_visual.jpg); }
+}
+
+//서브 비쥬얼
+#subVisual {
+    width:1590px; height:408px; margin:0 auto; display:table; position:relative;
+    @include backgroundSolt(50%, 0);
+    .tit_wrap {
+        width:100%; display:table-cell; vertical-align:middle; text-align:center;
+        h3 {
+            font-size:40px; color:$white; font-family:$sharp; font-weight:$bold; line-height:50px;
+            //@include txtAnimateSet(0,20px);
+            span { display:block; }
+        }
+    }
+}
+
+//서브 로케이션
+#subLocation {
+    width:1590px; height:76px; margin:0 auto; position:relative; background-color:$white;
+    .location_box {
+        height:76px; position:absolute; z-index:50;
+        @include borderRadius(29px);
+        @include boxSizing;
+        &.active { position:fixed; top:0; }
+    }
+    .location_list {
+        @extend %clearfix;
+        > li {
+            height:76px; float:left; position:relative; overflow:hidden;
+            &:after { width:1px; height:31px; background-color:$gray3; display:block; content:""; position:absolute; right:0; top:23px; z-index:-1; }
+            button, a {
+                width:100%; text-align:left; color:$gray2;
+                @include boxSizing;
+            }
+            button {
+                height:76px; position:relative; display:block; padding:0 0 0 20px;
+                @include transition;
+                &:before,
+                &:after {
+                    width:10px; height:1px; display:block; content:""; background-color:$black; position:absolute; top:50%; right:20px; margin:5px 0 0;
+                    @include transition;
+                }
+                &:before { @include transform(rotate(-45deg) translate(5px, 0)); }
+                &:after { @include transform(rotate(45deg) translate(-5px, 0)); }
+                &.active {
+                    background-color:$blue; color:$white;
+                    &:before,
+                    &:after { background-color:$white; }
+                    &:before { right:27px; }
+                    &:after { right:13px; }
+                }
+                &:hover {
+                    background-color:$blue; color:$white;
+                    &:before,
+                    &:after { background-color:$white; }
+                }
+            }
+            &.home {
+                a {
+                    width:67px; height:76px; margin:0 0 0 23px; display:block; background-image:url(../../images/icon/sub_nav_home.png); text-indent:-9999px;
+                    @include transition;
+                    @include backgroundSolt;
+                    &:hover { background-image:url(../../images/icon/sub_nav_home_on.png); background-color:$blue; }
+                }
+            }
+            &.depth1 {
+                width:220px;
+                button { font-size:15px; }
+            }
+            &.depth2 {
+                width:300px;
+                button { font-size:15px; }
+            }
+            .under_depth {
+                background-color:$blue; padding:10px 0;
+                a {
+                    height:30px; line-height:30px; font-size:15px; color:$white; position:relative; margin:0 0 0 20px;
+                    &:after {
+                        width:100%; height:1px; content:""; background-color:$white; display:block; position:absolute; bottom:0; left:0;
+                        @include scaleX(0);
+                        @include transition(transform, .2s);
+                    }
+                    &:hover,
+                    &:focus,
+                    &.active {
+                        &:after { @include scaleX(1); }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#content {
+    padding:110px 0 145px;
+    #subTitle {
+        text-align:center;
+        h4 { font-size:60px; color:$gray1; font-family:$sharp; }
+        p { font-size:17px; padding:30px 0 0; }
+    }
+    .contents_wrap { padding:90px 0 0;}
+}
+
+//게시판 검색 + 보기형태 전환
+#boardSearch {
+    width:600px; margin:0 auto;
+    form { float:left;}
+    @extend %clearfix;
+
+    //셀렉트 커스텀
+    #selectCustom {
+        width:173px; height:37px; position:relative; float:left;
+        button { text-align:left; font-size:17px; }
+        > button {
+            width:100%; height:37px; border-style:solid; border-bottom-width:2px; border-color:$gray1; padding:0 0 0 10px; color:$gray1;
+            @include transition(border-color, .2s);
+            &:after {
+                width:0; height:0; display:block; content:""; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 7px solid $gray1;
+                position:absolute; top:16px; right:10px;
+                @include transition;
+            }
+            &:hover,
+            &:focus { border-color:$blue; }
+            &.active {
+                &:after {border-top:0; border-bottom: 7px solid $gray1;}
+            }
+        }
+        ul {
+            width:100%; height:0; overflow:hidden; background-color:$gray1; padding:0 0 0 10px; position:absolute; display:none; z-index:10;
+            @include boxSizing;
+            li {
+                padding:12px 0 0;
+                &:first-child { padding:18px 0 0; }
+                &:last-child { padding:12px 0 24px; }
+                button {
+                    color:$white; position:relative; padding:0 0 4px;
+                    &:after {
+                        width:100%; height:1px; content:""; background-color:$white; display:block; position:absolute; bottom:0; left:0;
+                        @include opacity(0);
+                        @include transition(opacity, .2s);
+                    }
+                    &:hover,
+                    &:focus,
+                    &.active {
+                        &:after { @include opacity(1); }
+                    }
+                }
+            }
+        }
+    }
+
+    //인풋-텍스트 커스텀
+    #searchInput {
+        width:273px; float:left; padding:0 0 0 20px; position:relative;
+        input[type=text] {
+            width:100%; height:37px; border-style:solid; border-bottom-width:2px; border-color:$gray1; padding:0 33px 0 10px; color:$gray1; font-size:17px;
+            @include boxSizing;
+            @include transition(border-color, .2s);
+            @include placeholder(17px, $gray3, 35px);
+            &:hover { border-color:$blue; }
+        }
+        .submit_wrap {
+            width:18px; height:18px; position:absolute; right:7px; top:10px;
+            &:after {
+                width:8px; height:2px; display:block; content:""; position:absolute; background-color:$gray1; bottom:2px; right:0;
+                @include rotate(45);
+            }
+            input[type=submit] {
+                width:15px; height:15px; border-color:$gray1; border-width:2px; border-style:solid; text-indent:-9999px; cursor:pointer;
+                @include borderRadius(100%);
+            }
+        }
+    }
+
+    //리스트 형태 변환
+    .list_select {
+        float:right; margin:0 0 0 37px;
+        @extend %clearfix;
+        li {
+            float:left; margin:0 0 0 11px;
+            button {
+                width:37px; height:37px; text-indent:-9999px; background-color:$white;
+                @include backgroundSolt;
+                @include transition;
+                &.square { background-image:url(../../images/icon/square_icon.png);}
+                &.list { background-image:url(../../images/icon/list_icon.png);}
+                &:hover,
+                &:focus,
+                &.active {
+                    background-color:$gray1;
+                    &.square {background-image:url(../../images/icon/square_icon_on.png);}
+                    &.list {background-image:url(../../images/icon/list_icon_on.png);}
+                }
+            }
+        }
+    }
+}
+
+//서브 하단 컨텐츠
+#relatedContents {
+    padding:0 0 100px; position:relative;
+    &:after { width:100%; height:312px; display:block; content:""; background-color:$blue; position:absolute; bottom:0; z-index:-1;}
+    > h1 { width:1180px; margin:0 auto; font-size:20px; color:$gray1; padding:0 0 30px;}
+    .related_wrap {
+        width:1180px; margin:0 auto;
+        @extend %clearfix;
+        article {
+            float:left; margin:0 0 0 20px;
+            &:first-child { margin:0;}
+            a {
+                &:hover,
+                &:focus {
+                    figure {
+                        img {@include scale(1.05);}
+                        &:before { @include opacity(.4); }
+                        &:after { @include opacity(1); @include rotate(0);}
+                    }
+                    h1 i {@include translate(5px,0)}
+                }
+            }
+            figure {
+                position:relative; overflow:hidden;
+                &:before {
+                    width:100%; height:100%; position:absolute; top:0; left:0; display:block; content:""; background-color:$black; z-index:1;
+                    @include opacity(0);
+                    @include transition(opacity,.2s);
+                }
+                &:after {
+                    width:49px; height:49px; position:absolute; top:50%; left:50%; margin:-25px 0 0 -25px; display:block; content:""; z-index:2;
+                    background-image:url(../../images/icon/img_over_icon.png);
+                    @include backgroundSolt;
+                    @include opacity(0);
+                    @include rotate(-90);
+                    @include transition;
+                }
+                img { width:100%; @include transition(transform,.3s);}
+            }
+            h1 {
+                color:$white; font-size:25px; position:relative; margin:25px 0 0; display:inline-block;
+                i {
+                    position:absolute; top:49%; right:-35px;
+                    @include transition(transform,.2s);
+                    &:before {
+                        width:31px; height:2px; display:block; content:""; background-color:$white; position:absolute;
+                    }
+                    &:after {
+                        width:0; height:0; display:block; content:""; position:absolute; top:-2px; right:-35px;
+                        border-bottom:3px solid transparent; border-top:3px solid transparent; border-left:5px solid $white;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//서브 탭
+#subTab {
+    text-align:center;
+    ul {
+        display:inline-block; line-height:62px; padding:0 66px; font-size:17px; position:relative;
+        @extend %clearfix;
+        &:before { width:100%; height:1px; display:block; content:""; background-color:$gray3; top:50%; position:absolute; z-index:-1; left:0;}
+        li {
+            float:left; margin:0 0 0 20px;
+            &:first-child { margin:0;}
+            a {
+                width:292px; height:62px; display:block; background-color:$white; font-weight:$bold; position:relative;
+                @include borderRadius(62px);
+                @include transition;
+                &:hover,
+                &:focus,
+                &.active { background-color:$gray1; color:$white; }
+                &:after {
+                    width: 0; height: 0; content:""; position:absolute; left:50%; margin:0 0 0 -4px; top:62px; display:none;
+                    border-left: 7px solid transparent; border-right: 7px solid transparent; border-top: 9px solid $gray1;
+                }
+                &.active:after {display:block;}
+            }
+        }
+    }
+}
+
+
+
+
+
+
+//스크롤섹션 애니메이션
+//.js-scr-box {
+//    @include txtAnimateSet(0, 50px);
+//}

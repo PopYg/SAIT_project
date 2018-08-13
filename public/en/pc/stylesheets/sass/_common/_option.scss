@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+/* Font style setting */
+$one: SamsungOneLatin, sans-serif;
+$sharp: SamsungSharpSans, sans-serif;
+
+/* Point color setting */
+$blue : #1428a0;
+$black : #000;
+$white : #fff;
+
+$gray1 : #333;
+$gray2 : #636363;
+$gray3 : #a8a8a8;
+$gray4 : #d6d6d6;
+
+$gray5 : #e5e5e5;
+
+
+/* Background - color setting */
+$bg-blue : $blue;
+$bg-black : $black;
+$bg-grey1 : $gray1;
+$bg-grey2 : $gray2;
+$bg-grey3 : $gray3;
+
+/* Border - color setting */
+$bd-blue : $blue;
+$bd-black : $black;
+$bd-grey1 : $gray1;
+$bd-grey2 : $gray2;
+$bd-grey3 : $gray3;
+
+/* Font - color setting */
+$txt-blue : $blue;
+$txt-black : $black;
+$txt-grey1 : $gray1;
+$txt-grey2 : $gray2;
+$txt-grey3 : $gray3;
+
+/* Input - color setting */
+$inp-bd-base : #a9a9a9;
+
+/* Button - color setting */
+$btn-black : $black;
+
+/**
+ * BASE SETTING
+ */
+$base-font : $one;
+$base-font-size : 16px;
+$base-font-color : $txt-grey2;
+
+$normal : 300;
+$bold : 700;
+
